@@ -7,13 +7,16 @@ on:
     branches: [main]
 
 permissions:
-  security-events: write
   id-token: write
   contents: read
 
 jobs:
   analysis:
     runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      id-token: write
+      contents: read
     steps:
       - uses: actions/checkout@v4
         with:
@@ -31,6 +34,6 @@ jobs:
           path: results.sarif
           retention-days: 5
 
-      - uses: github/codeql-action/upload-sarif@v3
+      - uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: results.sarif

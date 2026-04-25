@@ -1,0 +1,23 @@
+{
+  "version": "0.2",
+  "words": [
+    "nindent",
+    "benbotsford",
+    "playquibble",
+    "sslmode",
+    "letsencrypt",
+    "dbname",
+    "helmfile",
+    "kubeconform",
+    "megalinter",
+    "checkov",
+    "trivy",
+    "gitleaks",
+    "renovate",
+    "scorecard",
+    "ossf",
+    "sarif",
+    "ghcr",
+    "quibble"
+  ]
+}

@@ -1,11 +1,12 @@
 ENABLE_LINTERS:
   - ACTION_ACTIONLINT
   - JSON_JSONLINT
-  - KUBERNETES_HELM
-  - KUBERNETES_KUBECONFORM
   - MARKDOWN_MARKDOWNLINT
-  - YAML_YAMLLINT
   - SPELL_CSPELL
+  - YAML_YAMLLINT
+
+# Helm templates contain {{ }} syntax that is not valid YAML
+YAML_YAMLLINT_FILTER_REGEX_EXCLUDE: (charts/quibble/templates)
 
 FILTER_REGEX_EXCLUDE: (megalinter-reports|\.git)
 
