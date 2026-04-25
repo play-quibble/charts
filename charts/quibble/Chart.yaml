@@ -12,5 +12,7 @@ home: https://github.com/play-quibble/trivia
 sources:
   - https://github.com/play-quibble/trivia
 maintainers:
+  - name: Ben Botsford
+    url: https://github.com/benbotsford
   - name: Jason Sievert
     url: https://github.com/jsievert
