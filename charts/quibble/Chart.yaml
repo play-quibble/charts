@@ -3,14 +3,14 @@ name: quibble
 description: Self-hosted Kubernetes trivia platform. Includes the API, web frontend, and Redis.
 type: application
 version: 0.1.0
-appVersion: "1.2.0"
+appVersion: "1.6.1"
 keywords:
   - trivia
   - quiz
   - game
-home: https://github.com/benbotsford/trivia
+home: https://github.com/play-quibble/trivia
 sources:
-  - https://github.com/benbotsford/trivia
+  - https://github.com/play-quibble/trivia
 maintainers:
-  - name: benbotsford
-    url: https://github.com/benbotsford
+  - name: Jason Sievert
+    url: https://github.com/jsievert
