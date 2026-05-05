@@ -5,6 +5,18 @@ serviceAccount:
   create: true
   name: ""
 
+# -- Image pull secrets for private GHCR images.
+# Create the secret first:
+#   kubectl create secret docker-registry ghcr-pull-secret \
+#     --docker-server=ghcr.io \
+#     --docker-username=<github-username> \
+#     --docker-password=<ghcr-pat> \
+#     --namespace=<your-namespace>
+# Then reference it here:
+#   imagePullSecrets:
+#     - name: ghcr-pull-secret
+imagePullSecrets: []
+
 # -- API (Go backend)
 api:
   image:
@@ -31,6 +43,21 @@ web:
     pullPolicy: IfNotPresent
   replicaCount: 1
   resources: {}
+  env:
+    # Public base URL of the web app — used by Auth0 SDK for callbacks.
+    # Must match AUTH0_BASE_URL. Example: https://quibble.example.com
+    auth0BaseUrl: ""
+    # Auth0 tenant URL. Example: https://your-tenant.us.auth0.com
+    auth0IssuerBaseUrl: ""
+    # Auth0 application Client ID (not secret — safe to put in values).
+    auth0ClientId: ""
+  # -- Sensitive Auth0 values — set via --set or a values override file, never commit
+  secret:
+    # Random 32-byte hex string used to encrypt the session cookie.
+    # Generate with: openssl rand -hex 32
+    auth0Secret: ""
+    # Auth0 application Client Secret.
+    auth0ClientSecret: ""
 
 # -- Redis (bundled, no external dependency)
 redis:

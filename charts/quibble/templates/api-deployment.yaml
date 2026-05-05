@@ -19,6 +19,10 @@ spec:
         app.kubernetes.io/component: api
     spec:
       serviceAccountName: {{ include "quibble.serviceAccountName" . }}
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       containers:
         - name: api
           image: {{ include "quibble.apiImage" . }}
@@ -36,6 +40,8 @@ spec:
               value: {{ .Values.api.env.auth0Domain | quote }}
             - name: AUTH0_AUDIENCE
               value: {{ .Values.api.env.auth0Audience | quote }}
+            - name: AUTO_MIGRATE
+              value: "true"
             - name: REDIS_ADDR
               value: "{{ include "quibble.fullname" . }}-redis:6379"
             - name: DATABASE_URL

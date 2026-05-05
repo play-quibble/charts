@@ -8,6 +8,15 @@ metadata:
     app.kubernetes.io/component: api
 spec:
   type: ClusterIP
+  # ClientIP affinity ensures WebSocket connections always reach the same pod.
+  # The realtime hub is in-process, so a client that round-robins to a different
+  # pod on reconnect will be dropped from its game. This is a guardrail — keep
+  # replicaCount: 1 until the hub is externalised to Redis pub/sub.
+  sessionAffinity: ClientIP
+  sessionAffinityConfig:
+    clientIP:
+      # 4 hours — long enough to cover a full trivia night without re-pinning.
+      timeoutSeconds: 14400
   ports:
     - port: 8080
       targetPort: http
