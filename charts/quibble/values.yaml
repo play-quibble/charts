@@ -30,6 +30,11 @@ api:
     logLevel: info
     auth0Domain: ""
     auth0Audience: ""
+    # Maximum connections in the pgxpool per pod.
+    # Match to your Neon plan's concurrent connection limit.
+    # Use the Neon pooler host (*.pooler.neon.tech) in DATABASE_URL to allow
+    # a higher value here; keep it at 10 with the direct host on Starter/Launch.
+    dbMaxConns: "10"
   # -- Sensitive values — set via --set or a values override file, never commit
   secret:
     # postgres connection string

@@ -42,6 +42,8 @@ spec:
               value: {{ .Values.api.env.auth0Audience | quote }}
             - name: AUTO_MIGRATE
               value: "true"
+            - name: DB_MAX_CONNS
+              value: {{ .Values.api.env.dbMaxConns | quote }}
             - name: REDIS_ADDR
               value: "{{ include "quibble.fullname" . }}-redis:6379"
             - name: DATABASE_URL
